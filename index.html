@@ -53,7 +53,12 @@
     <h2>4. Human vs. AI Architecture Comparison</h2>
     <p>As part of the engineering analysis, we generated a secondary UML model using an AI tool to evaluate structural convergence and architectural trade-offs[cite: 1].</p>
     <img src="Screenshot 2026-09-01 213000.png" alt="AI Generated UML Diagram" class="project-image">
-    <p>While both designs organically converged on the exact same four design patterns, key differences emerged in tax handling[cite: 1]. Our team utilized a constant TAX_RATE inside the Order class, whereas the AI isolated the tax logic into a separate TaxCalculator class[cite: 1]. This highlights the architectural trade-off between strict adherence to the Single Responsibility Principle and the risk of over-engineering simple computations[cite: 1].</p>
+    
+    <ul>
+        <li><strong>Difference 1 — Tax Handling:</strong> In your solution, where does the 16% tax live? Go back and look — it's a TAX_RATE constant inside Order, and Order.calculateTotal() applies it. In the AI's text, tax is its own class, TaxCalculator. (Its diagram forgot to draw it, but the intent is clear.) So here's the question for you: which is better — tax as a field+method inside Order, or tax as a separate TaxCalculator class? Think about SRP. Think also about a realistic future: what if tax rules get complicated — different rates, exemptions, tax-free promotions? Does Order start doing too much? But also — is a whole class for total * 0.16 overkill right now? There's a real trade-off here; I want your judgment, not a "right answer."[cite: 1]</li>
+        <li><strong>Difference 2 — Naming & Roles:</strong> This one's mostly naming. Your OfferPublisher and the AI's OfferManager/OfferPublisher are the same role in Observer. What's that role called in the standard Observer pattern vocabulary — the thing being observed? And the matching question: is Customer the observer or the observed? Solutions actually agree here structurally; the only issue is the AI's inconsistent naming. So your comparison sentence would be something like: "both designs use Observer identically; the AI's is weakened only by a naming mismatch between text and diagram." Can you see why that's a fair thing to write?[cite: 1]</li>
+        <li><strong>Difference 3 — Structural Convergence:</strong> And this is the most important one to notice. Compare the two diagrams box for box. The patterns are the same four — Factory, Decorator, Strategy, Observer. The class structures are nearly identical. So what's your honest headline conclusion for Part 3? It's not "one is better" — it's something more like: the two solutions converged. Why do you think that happened? (Hint: the PDF scenario has pretty clear "points of variation" — when the problem strongly signals where things change, independent designers tend to land on the same patterns. That convergence is itself worth writing about — it's evidence the pattern choices weren't arbitrary.)[cite: 1]</li>
+    </ul>
 
     <a href="https://moathal-turk.github.io" class="back-button">← Back to Main Portfolio</a>
 
@@ -61,3 +66,4 @@
 
 </body>
 </html>
+
