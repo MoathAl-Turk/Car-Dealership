@@ -26,25 +26,34 @@
     <button id="theme-toggle">🌙 Switch to Dark Mode</button>
 
     <h1>Car Dealership Software Architecture</h1>
-    <p>A comprehensive object-oriented design project developed at Princess Sumaya University for Technology.</p>
-    <p><small><strong>Team:</strong> Moath Al-Turk, Ehab Alhattab, Mohammad Abu Nahleh, Abdelrahman Qawaqzeh, Hamzeh Naji</small></p>
+    <p>A comprehensive object-oriented design project developed at Princess Sumaya University for Technology[cite: 1].</p>
+    <p><small><strong>Team:</strong> Moath Al-Turk, Ehab Alhattab, Mohammad Abu Nahleh, Abdelrahman Qawaqzeh, Hamzeh Naji[cite: 1]</small></p>
 
     <h2>1. System Architecture & UML Design</h2>
-    <p>The core of this project was designing a scalable system using strict SOLID principles to manage car manufacturing, options, ordering, and customer notifications.</p>
+    <p>The core of this project was designing a scalable system using strict object-oriented concepts to manage car manufacturing, options, ordering, and customer notifications.</p>
     <img src="main-uml-diagram.png" alt="Primary UML Class Diagram" class="project-image">
 
     <h2>2. Applied Design Patterns</h2>
     <ul>
-        <li><strong>Factory Pattern:</strong> Used within the CarFactory class to isolate the creation of car instances, ensuring the purchasing flow remains intact if new brands are added.</li>
-        <li><strong>Decorator Pattern:</strong> Utilized the CarOptionDecorator abstract class to dynamically add features (like Heated Seats or a Panoramic Sunroof) to a car, calculating the total price without altering existing structures.</li>
-        <li><strong>Strategy Pattern:</strong> Implemented the PaymentStrategy interface to allow interchangeable transaction methods (Cash or Credit Card) at checkout.</li>
-        <li><strong>Observer Pattern:</strong> Created an OfferPublisher to maintain a loosely coupled system that broadcasts updates to registered Customers when new deals become available.</li>
+        <li><strong>Factory Pattern:</strong> Implemented inside the CarFactory class to handle car creation[cite: 1]. This ensures that adding new brands (like Volvo) remains isolated and does not break the rest of the purchasing flow[cite: 1].</li>
+        <li><strong>Decorator Pattern:</strong> Utilized the abstract CarOptionDecorator class to dynamically add functionality (like Heated Seats or Camera360) to a car object[cite: 1]. This accumulates the total price through default attributes without altering the base structure[cite: 1].</li>
+        <li><strong>Strategy Pattern:</strong> Designed the PaymentStrategy interface, implemented by CashPayment and CreditCardPayment, to accept interchangeable transaction closure methods[cite: 1]. Because Order aggregates this interface, new payment algorithms can be added without modifying the Order class[cite: 1].</li>
+        <li><strong>Observer Pattern:</strong> Created an OfferPublisher to track registered subscribers and push alerts to a generic Observer interface[cite: 1]. This keeps the publisher loosely coupled, avoiding a direct reliance on the Customer class[cite: 1].</li>
     </ul>
 
-    <h2>3. Human vs. AI Architecture Comparison</h2>
-    <p>As part of the engineering analysis, we generated a secondary UML model using an AI tool to evaluate structural convergence and architectural trade-offs.</p>
+    <h2>3. SOLID Principles Applied</h2>
+    <ul>
+        <li><strong>Single Responsibility Principle (SRP):</strong> Every class does one specific job; for example, Customer holds data, Order calculates totals, and CarFactory creates cars[cite: 1]. Price logic is never mixed into the Customer class[cite: 1].</li>
+        <li><strong>Open/Closed Principle (OCP):</strong> The architecture is open for extension but safely closed to modification[cite: 1]. Adding new decorators or payment options simply requires registering a new subclass rather than editing existing code[cite: 1].</li>
+        <li><strong>Liskov Substitution Principle (LSP):</strong> Any Car subclass, including a decorated one, works seamlessly anywhere a Car is expected, allowing the Order computation engine to reliably process a car wrapped in multiple options[cite: 1].</li>
+        <li><strong>Interface Segregation Principle (ISP):</strong> Small, focused interfaces (PaymentStrategy and Observer) ensure that classes like Customer are never forced to depend on interfaces or implement methods they do not use[cite: 1].</li>
+        <li><strong>Dependency Inversion Principle (DIP):</strong> High-level classes depend on abstractions rather than concrete implementations[cite: 1]. The Order class depends on the Car and PaymentStrategy abstractions, not on concrete classes like BMWCar or CreditCardPayment[cite: 1].</li>
+    </ul>
+
+    <h2>4. Human vs. AI Architecture Comparison</h2>
+    <p>As part of the engineering analysis, we generated a secondary UML model using an AI tool to evaluate structural convergence and architectural trade-offs[cite: 1].</p>
     <img src="ai-uml-diagram.png" alt="AI Generated UML Diagram" class="project-image">
-    <p>While both designs organically converged on the exact same four design patterns, key differences emerged in tax handling. Our team utilized a constant TAX_RATE inside the Order class, whereas the AI isolated the tax logic into a separate TaxCalculator class. This highlights the architectural trade-off between strict adherence to the Single Responsibility Principle and the risk of over-engineering simple computations.</p>
+    <p>While both designs organically converged on the exact same four design patterns, key differences emerged in tax handling[cite: 1]. Our team utilized a constant TAX_RATE inside the Order class, whereas the AI isolated the tax logic into a separate TaxCalculator class[cite: 1]. This highlights the architectural trade-off between strict adherence to the Single Responsibility Principle and the risk of over-engineering simple computations[cite: 1].</p>
 
     <a href="https://moathal-turk.github.io" class="back-button">← Back to Main Portfolio</a>
 
