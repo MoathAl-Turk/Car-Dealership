@@ -14,7 +14,6 @@
         .back-button:hover { background-color: #004182; }
         #theme-toggle { padding: 10px 15px; cursor: pointer; border: none; border-radius: 5px; background-color: #2c3e50; color: white; font-weight: bold; margin-bottom: 20px; }
         
-        /* Dark Mode Override */
         body.dark-mode { background-color: #121212; color: #e0e0e0; }
         body.dark-mode h1, body.dark-mode h2 { color: #61dafb; }
         body.dark-mode h1 { border-bottom: 2px solid #333333; }
@@ -26,8 +25,8 @@
     <button id="theme-toggle">🌙 Switch to Dark Mode</button>
 
     <h1>Car Dealership Software Architecture</h1>
-    <p>A comprehensive object-oriented design project developed at Princess Sumaya University for Technology[cite: 1].</p>
-    <p><small><strong>Team:</strong> Moath Al-Turk, Ehab Alhattab, Mohammad Abu Nahleh, Abdelrahman Qawaqzeh, Hamzeh Naji[cite: 1]</small></p>
+    <p>A comprehensive object-oriented design project developed at Princess Sumaya University for Technology.</p>
+    <p><small><strong>Team:</strong> Moath Al-Turk</small></p>
 
     <h2>1. System Architecture & UML Design</h2>
     <p>The core of this project was designing a scalable system using strict object-oriented concepts to manage car manufacturing, options, ordering, and customer notifications.</p>
@@ -35,29 +34,29 @@
 
     <h2>2. Applied Design Patterns</h2>
     <ul>
-        <li><strong>Factory Pattern:</strong> Implemented inside the CarFactory class to handle car creation[cite: 1]. This ensures that adding new brands (like Volvo) remains isolated and does not break the rest of the purchasing flow[cite: 1].</li>
-        <li><strong>Decorator Pattern:</strong> Utilized the abstract CarOptionDecorator class to dynamically add functionality (like Heated Seats or Camera360) to a car object[cite: 1]. This accumulates the total price through default attributes without altering the base structure[cite: 1].</li>
-        <li><strong>Strategy Pattern:</strong> Designed the PaymentStrategy interface, implemented by CashPayment and CreditCardPayment, to accept interchangeable transaction closure methods[cite: 1]. Because Order aggregates this interface, new payment algorithms can be added without modifying the Order class[cite: 1].</li>
-        <li><strong>Observer Pattern:</strong> Created an OfferPublisher to track registered subscribers and push alerts to a generic Observer interface[cite: 1]. This keeps the publisher loosely coupled, avoiding a direct reliance on the Customer class[cite: 1].</li>
+        <li><strong>Factory Pattern:</strong> Implemented inside the CarFactory class to handle car creation. This ensures that adding new brands (like Volvo) remains isolated and does not break the rest of the purchasing flow.</li>
+        <li><strong>Decorator Pattern:</strong> Utilized the abstract CarOptionDecorator class to dynamically add functionality (like Heated Seats or Camera360) to a car object. This accumulates the total price through default attributes without altering the base structure.</li>
+        <li><strong>Strategy Pattern:</strong> Designed the PaymentStrategy interface, implemented by CashPayment and CreditCardPayment, to accept interchangeable transaction closure methods. Because Order aggregates this interface, new payment algorithms can be added without modifying the Order class.</li>
+        <li><strong>Observer Pattern:</strong> Created an OfferPublisher to track registered subscribers and push alerts to a generic Observer interface. This keeps the publisher loosely coupled, avoiding a direct reliance on the Customer class.</li>
     </ul>
 
     <h2>3. SOLID Principles Applied</h2>
     <ul>
-        <li><strong>Single Responsibility Principle (SRP):</strong> Every class does one specific job; for example, Customer holds data, Order calculates totals, and CarFactory creates cars[cite: 1]. Price logic is never mixed into the Customer class[cite: 1].</li>
-        <li><strong>Open/Closed Principle (OCP):</strong> The architecture is open for extension but safely closed to modification[cite: 1]. Adding new decorators or payment options simply requires registering a new subclass rather than editing existing code[cite: 1].</li>
-        <li><strong>Liskov Substitution Principle (LSP):</strong> Any Car subclass, including a decorated one, works seamlessly anywhere a Car is expected, allowing the Order computation engine to reliably process a car wrapped in multiple options[cite: 1].</li>
-        <li><strong>Interface Segregation Principle (ISP):</strong> Small, focused interfaces (PaymentStrategy and Observer) ensure that classes like Customer are never forced to depend on interfaces or implement methods they do not use[cite: 1].</li>
-        <li><strong>Dependency Inversion Principle (DIP):</strong> High-level classes depend on abstractions rather than concrete implementations[cite: 1]. The Order class depends on the Car and PaymentStrategy abstractions, not on concrete classes like BMWCar or CreditCardPayment[cite: 1].</li>
+        <li><strong>Single Responsibility Principle (SRP):</strong> Every class does one specific job; for example, Customer holds data, Order calculates totals, and CarFactory creates cars. Price logic is never mixed into the Customer class.</li>
+        <li><strong>Open/Closed Principle (OCP):</strong> The architecture is open for extension but safely closed to modification. Adding new decorators or payment options simply requires registering a new subclass rather than editing existing code.</li>
+        <li><strong>Liskov Substitution Principle (LSP):</strong> Any Car subclass, including a decorated one, works seamlessly anywhere a Car is expected, allowing the Order computation engine to reliably process a car wrapped in multiple options.</li>
+        <li><strong>Interface Segregation Principle (ISP):</strong> Small, focused interfaces (PaymentStrategy and Observer) ensure that classes like Customer are never forced to depend on interfaces or implement methods they do not use.</li>
+        <li><strong>Dependency Inversion Principle (DIP):</strong> High-level classes depend on abstractions rather than concrete implementations. The Order class depends on the Car and PaymentStrategy abstractions, not on concrete classes like BMWCar or CreditCardPayment.</li>
     </ul>
 
     <h2>4. Human vs. AI Architecture Comparison</h2>
-    <p>As part of the engineering analysis, we generated a secondary UML model using an AI tool to evaluate structural convergence and architectural trade-offs[cite: 1].</p>
+    <p>As part of the engineering analysis, we generated a secondary UML model using an AI tool to evaluate structural convergence and architectural trade-offs.</p>
     <img src="Screenshot 2026-09-01 213000.png" alt="AI Generated UML Diagram" class="project-image">
     
     <ul>
-        <li><strong>Difference 1 — Tax Handling:</strong> In your solution, where does the 16% tax live? Go back and look — it's a TAX_RATE constant inside Order, and Order.calculateTotal() applies it. In the AI's text, tax is its own class, TaxCalculator. (Its diagram forgot to draw it, but the intent is clear.) So here's the question for you: which is better — tax as a field+method inside Order, or tax as a separate TaxCalculator class? Think about SRP. Think also about a realistic future: what if tax rules get complicated — different rates, exemptions, tax-free promotions? Does Order start doing too much? But also — is a whole class for total * 0.16 overkill right now? There's a real trade-off here; I want your judgment, not a "right answer."[cite: 1]</li>
-        <li><strong>Difference 2 — Naming & Roles:</strong> This one's mostly naming. Your OfferPublisher and the AI's OfferManager/OfferPublisher are the same role in Observer. What's that role called in the standard Observer pattern vocabulary — the thing being observed? And the matching question: is Customer the observer or the observed? Solutions actually agree here structurally; the only issue is the AI's inconsistent naming. So your comparison sentence would be something like: "both designs use Observer identically; the AI's is weakened only by a naming mismatch between text and diagram." Can you see why that's a fair thing to write?[cite: 1]</li>
-        <li><strong>Difference 3 — Structural Convergence:</strong> And this is the most important one to notice. Compare the two diagrams box for box. The patterns are the same four — Factory, Decorator, Strategy, Observer. The class structures are nearly identical. So what's your honest headline conclusion for Part 3? It's not "one is better" — it's something more like: the two solutions converged. Why do you think that happened? (Hint: the PDF scenario has pretty clear "points of variation" — when the problem strongly signals where things change, independent designers tend to land on the same patterns. That convergence is itself worth writing about — it's evidence the pattern choices weren't arbitrary.)[cite: 1]</li>
+        <li><strong>Difference 1 — Tax Handling:</strong> In your solution, where does the 16% tax live? Go back and look — it's a TAX_RATE constant inside Order, and Order.calculateTotal() applies it. In the AI's text, tax is its own class, TaxCalculator. (Its diagram forgot to draw it, but the intent is clear.) So here's the question for you: which is better — tax as a field+method inside Order, or tax as a separate TaxCalculator class? Think about SRP. Think also about a realistic future: what if tax rules get complicated — different rates, exemptions, tax-free promotions? Does Order start doing too much? But also — is a whole class for total * 0.16 overkill right now? There's a real trade-off here; I want your judgment, not a "right answer."</li>
+        <li><strong>Difference 2 — Naming & Roles:</strong> This one's mostly naming. Your OfferPublisher and the AI's OfferManager/OfferPublisher are the same role in Observer. What's that role called in the standard Observer pattern vocabulary — the thing being observed? And the matching question: is Customer the observer or the observed? Solutions actually agree here structurally; the only issue is the AI's inconsistent naming. So your comparison sentence would be something like: "both designs use Observer identically; the AI's is weakened only by a naming mismatch between text and diagram." Can you see why that's a fair thing to write?</li>
+        <li><strong>Difference 3 — Structural Convergence:</strong> And this is the most important one to notice. Compare the two diagrams box for box. The patterns are the same four — Factory, Decorator, Strategy, Observer. The class structures are nearly identical. So what's your honest headline conclusion for Part 3? It's not "one is better" — it's something more like: the two solutions converged. Why do you think that happened? (Hint: the PDF scenario has pretty clear "points of variation" — when the problem strongly signals where things change, independent designers tend to land on the same patterns. That convergence is itself worth writing about — it's evidence the pattern choices weren't arbitrary.)</li>
     </ul>
 
     <a href="https://moathal-turk.github.io" class="back-button">← Back to Main Portfolio</a>
