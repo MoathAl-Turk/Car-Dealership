@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealership Architecture</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #333; background-color: #f8f9fa; transition: background-color 0.3s, color 0.3s; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #0a66c2; padding-bottom: 10px; }
+        h2 { color: #0a66c2; margin-top: 30px; }
+        .project-image { width: 100%; border: 1px solid #ddd; border-radius: 5px; margin: 10px 0; }
+        .back-button { display: inline-block; margin-top: 40px; padding: 10px 20px; background-color: #0a66c2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .back-button:hover { background-color: #004182; }
+        #theme-toggle { padding: 10px 15px; cursor: pointer; border: none; border-radius: 5px; background-color: #2c3e50; color: white; font-weight: bold; margin-bottom: 20px; }
+        
+        /* Dark Mode Override */
+        body.dark-mode { background-color: #121212; color: #e0e0e0; }
+        body.dark-mode h1, body.dark-mode h2 { color: #61dafb; }
+        body.dark-mode h1 { border-bottom: 2px solid #333333; }
+        body.dark-mode #theme-toggle { background-color: #61dafb; color: #121212; }
+    </style>
+</head>
+<body>
+
+    <button id="theme-toggle">🌙 Switch to Dark Mode</button>
+
+    <h1>Car Dealership Software Architecture</h1>
+    <p>A comprehensive object-oriented design project developed at Princess Sumaya University for Technology.</p>
+    <p><small><strong>Team:</strong> Moath Al-Turk, Ehab Alhattab, Mohammad Abu Nahleh, Abdelrahman Qawaqzeh, Hamzeh Naji</small></p>
+
+    <h2>1. System Architecture & UML Design</h2>
+    <p>The core of this project was designing a scalable system using strict SOLID principles to manage car manufacturing, options, ordering, and customer notifications.</p>
+    <img src="main-uml-diagram.png" alt="Primary UML Class Diagram" class="project-image">
+
+    <h2>2. Applied Design Patterns</h2>
+    <ul>
+        <li><strong>Factory Pattern:</strong> Used within the CarFactory class to isolate the creation of car instances, ensuring the purchasing flow remains intact if new brands are added.</li>
+        <li><strong>Decorator Pattern:</strong> Utilized the CarOptionDecorator abstract class to dynamically add features (like Heated Seats or a Panoramic Sunroof) to a car, calculating the total price without altering existing structures.</li>
+        <li><strong>Strategy Pattern:</strong> Implemented the PaymentStrategy interface to allow interchangeable transaction methods (Cash or Credit Card) at checkout.</li>
+        <li><strong>Observer Pattern:</strong> Created an OfferPublisher to maintain a loosely coupled system that broadcasts updates to registered Customers when new deals become available.</li>
+    </ul>
+
+    <h2>3. Human vs. AI Architecture Comparison</h2>
+    <p>As part of the engineering analysis, we generated a secondary UML model using an AI tool to evaluate structural convergence and architectural trade-offs.</p>
+    <img src="ai-uml-diagram.png" alt="AI Generated UML Diagram" class="project-image">
+    <p>While both designs organically converged on the exact same four design patterns, key differences emerged in tax handling. Our team utilized a constant TAX_RATE inside the Order class, whereas the AI isolated the tax logic into a separate TaxCalculator class. This highlights the architectural trade-off between strict adherence to the Single Responsibility Principle and the risk of over-engineering simple computations.</p>
+
+    <a href="https://moathal-turk.github.io" class="back-button">← Back to Main Portfolio</a>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
